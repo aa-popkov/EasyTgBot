@@ -1,6 +1,6 @@
 from aiogram.types import BotCommand
 
-from main import bot
+from bot import bot
 from config import config
 
 
