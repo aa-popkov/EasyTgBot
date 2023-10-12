@@ -1,8 +1,7 @@
-from .base import Base
-from .user import User
+from . import systems, users
 
 
 __all__ = [
-  "Base",
-  "User"
+  "systems",
+  "users"
 ]

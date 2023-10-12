@@ -1,8 +1,8 @@
 from typing import Optional
 
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped
 
-from .base import Base
+from models.systems import Base
 
 
 class User(Base):
