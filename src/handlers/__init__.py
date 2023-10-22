@@ -1,13 +1,19 @@
 from aiogram import Router
 
-from .empty import router as router_empty
-from .start import router as router_start
+from .start import start_router
+from .register import register_router
+from .empty import empty_router
+from .admin import admin_router
+from .menu_main import menu_main_router
+from .cats import cats_router
 
 routes: list[Router] = [
-  router_start,
-  router_empty, # ! Last Route
+    cats_router,
+    menu_main_router,
+    start_router,
+    admin_router,
+    register_router,
+    empty_router,  # ! Last Route
 ]
 
-__all__ = [
-  "routes"
-]
+__all__ = ["routes"]

@@ -1,6 +1,4 @@
 from .admin import CheckAdminMiddleware
 
 
-__all__ = [
-  "CheckAdminMiddleware"
-]
+__all__ = ["CheckAdminMiddleware"]

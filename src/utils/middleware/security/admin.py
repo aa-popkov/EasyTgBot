@@ -3,7 +3,7 @@ from typing import Callable, Dict, Any, Awaitable
 from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject, Message
 
-from config import config
+from utils.config import config
 
 
 class CheckAdminMiddleware(BaseMiddleware):
@@ -17,6 +17,8 @@ class CheckAdminMiddleware(BaseMiddleware):
         if mgs_id == config.TG_ADMIN_CHAT_ID:
             return await handler(event, data)
 
-        await event.answer("Admin section!\nNot permited!", show_alert=True)
+        await event.answer(
+            "Admin section! Not permited!\nGo to main menu: /menu", show_alert=True
+        )
 
         return

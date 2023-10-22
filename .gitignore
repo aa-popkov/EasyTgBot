@@ -1,4 +1,6 @@
 .vscode
+.idea
+src/temp.py
 src/docker/data
 src/alembic/versions
 # Byte-compiled / optimized / DLL files

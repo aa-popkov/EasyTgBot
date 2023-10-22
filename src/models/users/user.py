@@ -1,12 +1,20 @@
-from typing import Optional
-
-from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.types import BigInteger, String, TIMESTAMP
 
 from models.systems import Base
+from utils.models import created_at, updated_at
 
 
 class User(Base):
-  tg_id: Mapped[str]
-  username: Mapped[Optional[str]]
-  bio: Mapped[Optional[str]]
+    tg_id: Mapped[int] = mapped_column(BigInteger, unique=True)
+    username: Mapped[str | None]
+    phone: Mapped[str | None] = mapped_column(unique=True)
+    crated_at: Mapped[created_at]
+    updated_at: Mapped[updated_at]
 
+    def __str__(self) -> str:
+        return f"""
+tg_id: {self.tg_id}
+username: {self.username}
+phone: {self.phone}
+"""

@@ -1,11 +1,6 @@
 import asyncio
 import logging
 import sys
-from typing import NamedTuple
-
-from aiogram import Bot, Dispatcher
-from aiogram.enums import ParseMode
-from aiogram.fsm.storage.memory import MemoryStorage
 
 from bot import dp, bot
 from utils.startup import on_startup
