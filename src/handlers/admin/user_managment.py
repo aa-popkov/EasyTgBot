@@ -9,9 +9,10 @@ from keyboards.kb import admin_menu_kb
 from keyboards.data import AdminMenu
 from utils.states import Main
 from utils.database import get_user, delete_user
+from bot import redis
 
 admin_router = Router(name=__name__)
-admin_router.message.outer_middleware(CheckAdminMiddleware())
+admin_router.message.middleware(CheckAdminMiddleware())
 
 
 @admin_router.message(Command("admin"), StateFilter(Main.main_state))
@@ -60,5 +61,6 @@ async def del_user_by_id_msg(msg: Message, state: FSMContext):
         await msg.answer(f"Такой юзер не найден", reply_markup=admin_menu_kb)
     else:
         await msg.answer(f"Успешно удален", reply_markup=admin_menu_kb)
-    
+        async for redis_key in redis.scan_iter(f"fsm:{user_tgid}:*"):
+            await redis.delete(redis_key)
     await state.set_state(Main.admin_menu)

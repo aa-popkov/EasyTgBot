@@ -1,15 +1,15 @@
 from aiogram import Router
-from aiogram.filters import Command
+from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 
 from keyboards.kb import main_menu_kb
-from utils.states import Main
+from utils.states import Main, Register
 
 menu_main_router = Router(name=__name__)
 
 
-@menu_main_router.message(Command("menu"))
+@menu_main_router.message(Command("menu"), ~StateFilter(Register, None))
 async def cmd_start(msg: Message, state: FSMContext):
     await msg.answer(
         "Добро пожаловать в Главное Меню\n"

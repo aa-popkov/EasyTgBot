@@ -26,6 +26,6 @@ async def get_user(tg_id: int) -> User | None:
 async def delete_user(tg_id: int) -> bool:
     async with db_helper.session_factory() as session:
         stmt = delete(User).where(User.tg_id == tg_id)
-        result: Result = await session.execute(stmt)
+        result = await session.execute(stmt)
         await session.commit()
-        return True
+        return False if result.rowcount == 0 else True

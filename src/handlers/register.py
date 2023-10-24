@@ -1,6 +1,6 @@
 from aiogram import Router, F
 from aiogram.enums.content_type import ContentType
-from aiogram.filters import Command, StateFilter
+from aiogram.filters import Command, StateFilter, and_f
 from aiogram.fsm.context import FSMContext
 from aiogram.types import (
     Message,
@@ -15,7 +15,8 @@ from keyboards.kb import main_menu_kb, send_contact_kb
 register_router = Router(name=__name__)
 
 
-@register_router.message(Command("register") or StateFilter(Register.start_register))
+@register_router.message(Command("register"))
+@register_router.message(StateFilter(Register.start_register))
 async def cmd_register(msg: Message, state: FSMContext):
     user: User | None = await get_user(msg.from_user.id)
     if user:
@@ -66,7 +67,7 @@ async def cmd_register_get_contact(msg: Message, state: FSMContext):
         reply_markup=ReplyKeyboardRemove(),
     )
 
-    await state.set_state(Register.has_contact)
+    await state.set_state(Main.main_state)
 
 
 @register_router.message(
