@@ -23,7 +23,7 @@ async def get_cats(msg: Message, state: FSMContext):
         filename="some_file_name.jpg",
         timeout=5
     )
-    await msg.reply_photo(photo=cat_img, reply_markup=main_menu_kb)
+    await msg.answer_photo(photo=cat_img, reply_markup=main_menu_kb)
     await state.set_state(Main.main_state)
 
 

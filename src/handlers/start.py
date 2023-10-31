@@ -7,6 +7,8 @@ from utils.database import get_user
 from models.users import User
 from utils.states import Register
 from handlers.register import cmd_register
+from keyboards.kb import main_menu_kb
+
 start_router = Router(name=__name__)
 
 
@@ -15,7 +17,10 @@ async def cmd_start(msg: Message, state: FSMContext):
     user_state = await state.get_state()
     user: User | None = await get_user(msg.from_user.id)
     if user_state and user:
-        await msg.answer("Ты уже в системе...")
+        await msg.answer("Ты уже с нами 🫡\n"
+                         "\n"
+                         "Перевожу в главное /menu",
+                         reply_markup=main_menu_kb)
         return
     answer_msg = f"""Welcome aboard!\nДля начала давай пройдем регистрацию:\n/register"""
     await msg.answer(answer_msg)

@@ -10,7 +10,7 @@ menu_main_router = Router(name=__name__)
 
 
 @menu_main_router.message(Command("menu"), ~StateFilter(Register, None))
-async def cmd_start(msg: Message, state: FSMContext):
+async def menu_start(msg: Message, state: FSMContext):
     await msg.answer(
         "Добро пожаловать в Главное Меню\n"
         "Весь доступный функционал доступен по кнопкам внизу\n"

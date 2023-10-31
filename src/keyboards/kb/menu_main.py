@@ -1,25 +1,8 @@
-from aiogram.types import (
-    ReplyKeyboardMarkup,
-    KeyboardButton,
-)
+from aiogram.types import KeyboardButton
+from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
 from keyboards.data import MainMenu
 
-btn_data = MainMenu()
-btns = [
-    [
-        KeyboardButton(
-            text=btn_data.cats,
-        ),
-
-    ],
-    [
-        KeyboardButton(
-            text=btn_data.info,
-        ),
-    ]
-]
-
-main_menu_kb = ReplyKeyboardMarkup(
-    keyboard=btns, resize_keyboard=True, one_time_keyboard=True
-)
+main_menu_kb = ReplyKeyboardBuilder(
+    markup=[[KeyboardButton(text=btn)] for btn in MainMenu()],
+).adjust(2).as_markup(resize_keyboard=True)

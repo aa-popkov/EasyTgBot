@@ -13,8 +13,6 @@ class User(Base):
     updated_at: Mapped[updated_at]
 
     def __str__(self) -> str:
-        return f"""
-tg_id: {self.tg_id}
-username: {self.username}
-phone: {self.phone}
-"""
+        return (f"tg_id: <a href=\"tg://user?id={self.tg_id}\">{self.tg_id}</a>\n"
+                f"username: <a href=\"http://t.me/{self.username}\">@{self.username}</a>\n"
+                f"phone: {self.phone}")

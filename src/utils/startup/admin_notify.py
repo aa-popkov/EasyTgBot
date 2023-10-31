@@ -8,10 +8,11 @@ from utils.config import config
 async def admin_notify():
     commands = [
         BotCommand(
-            command="/start", description=emojize(":chequered_flag:Climb aboard!")
+            command="/start", description=emojize("🏁 Climb aboard!")
         ),
-        BotCommand(command="/register", description=emojize(":handshake:Регистрация")),
-        BotCommand(command="/menu", description=emojize(":house:Меню")),
+        BotCommand(command="/register", description=emojize("🤝 Регистрация")),
+        BotCommand(command="/menu", description=emojize("🏠 Меню")),
+        BotCommand(command="/budget", description=emojize("💰 Бюджет")),
     ]
 
     await bot.set_my_commands(commands)

@@ -13,7 +13,7 @@ class CheckAdminMiddleware(BaseMiddleware):
         event: Message,
         data: Dict[str, Any],
     ) -> Any:
-        mgs_id = str(event.chat.id)
+        mgs_id = str(event.from_user.id)
         if mgs_id == config.TG_ADMIN_CHAT_ID:
             return await handler(event, data)
 

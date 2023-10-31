@@ -1,4 +1,4 @@
-from .user_managment import admin_router
+from .main_admin import admin_router
 
 
 __all__ = [

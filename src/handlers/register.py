@@ -23,8 +23,10 @@ async def cmd_register(msg: Message, state: FSMContext):
         await msg.answer(
             "Ты уже зергистрирован, со следующими параметрами:\n"
             f"{user}\n"
+            f"\n"
             "Перевожу в главное /menu",
-            reply_markup=main_menu_kb
+            reply_markup=main_menu_kb,
+            disable_web_page_preview=True
         )
         await state.set_state(Main.main_state)
         return

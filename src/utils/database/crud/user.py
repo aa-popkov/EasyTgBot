@@ -23,6 +23,13 @@ async def get_user(tg_id: int) -> User | None:
         return user
 
 
+async def get_all_users() -> list[User] | None:
+    async with db_helper.session_factory() as session:
+        stmt = select(User)
+        users = await session.scalars(stmt)
+        return [*users]
+
+
 async def delete_user(tg_id: int) -> bool:
     async with db_helper.session_factory() as session:
         stmt = delete(User).where(User.tg_id == tg_id)
